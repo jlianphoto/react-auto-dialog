@@ -1,0 +1,126 @@
+*{
+  margin:0;
+  padding: 0;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: #f0f0f0;
+}
+
+
+%arrow{
+  content:'';
+  display: block;
+  width: 0;
+  height: 0;
+  border: 12px solid transparent;
+  position: absolute;
+  top:30px;
+  transform: translateY(-50%);
+}
+
+.wechat{
+    clear: both;
+    display: table;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 16px 20px;
+
+    li{
+      margin-bottom: 40px;
+      .bubble{
+        padding: 16px 30px;
+        min-height: 60px;
+        position: relative;
+        text-align: left;
+        line-height: 60px;
+        font-size: 24px;
+        border-radius: 4px;
+        background: #fff;
+      }
+      .portrait{
+        width: 90px;
+        height: 90px;
+        border-radius: 50px;
+        position: relative;
+        top: 40px;
+      }
+
+      &:after{
+        content:'';
+        display: block;
+        clear: both;
+        width: 0;
+        height: 0;
+      }
+    }
+
+
+    .content{
+        max-width:560px; 
+
+        p{
+          margin-left:24px;
+          margin-bottom: 10px;
+          font-size: 24px;
+          height: 32px;
+          color: #b0b0b0;
+        }
+
+    }
+
+    .mine{
+      .content{
+        float: left;
+
+        :last-child{
+          margin:0 0 0 24px;
+        }
+      }
+      .portrait{
+          float: left;
+        }
+      .bubble{
+        &:before{
+          @extend %arrow;
+          border-right-color: #fff;
+          left: -24px;
+        }
+      }
+    }
+
+    .others{
+        .content{
+          float: right;
+          :last-child{
+              margin:0 24px 0 0;
+          }
+        }
+        .portrait{
+          float: right;
+        }
+        p{
+          margin:0 24px 10px 0;
+          text-align: right;
+        }
+        .bubble{
+          &:before{
+            @extend %arrow;
+            border-left-color: #fff;
+            right: -24px;
+          }
+        }
+      }
+}
+
+.fade-appear {
+  opacity: 0.01;
+}
+
+.fade-appear.fade-appear-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
