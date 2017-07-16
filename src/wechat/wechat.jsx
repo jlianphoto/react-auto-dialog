@@ -24,6 +24,12 @@ class Wechat extends Component {
     this.setState({
       data : this.state.data
     })
+    let wx = window.wx;
+    console.log(111)
+    wx.previewImage({
+        current: 'http://img4.imgtn.bdimg.com/it/u=1365112016,127878692&fm=26&gp=0.jpg', // 当前显示图片的http链接
+        urls: ['http://img4.imgtn.bdimg.com/it/u=1365112016,127878692&fm=26&gp=0.jpg','http://img4.imgtn.bdimg.com/it/u=1365112016,127878692&fm=26&gp=0.jpg'] // 需要预览的图片http链接列表
+    });
   }
 
 
@@ -95,10 +101,10 @@ class Wechat extends Component {
            </div>
          </li>
           <li className="others">
-            <img src={require('../img/huan.jpg')} className='portrait' alt=''/>
+            <img src={require('../img/huan.jpg')}  className='portrait' alt=''/>
             <div className='content'>
               <p>我啊</p>
-              <img src='http://img4.imgtn.bdimg.com/it/u=1365112016,127878692&fm=26&gp=0.jpg' alt='' className='type-img'/>
+              <img src='http://img4.imgtn.bdimg.com/it/u=1365112016,127878692&fm=26&gp=0.jpg' onClick={this.add} alt='' className='type-img'/>
             </div>
           </li>
         </ul>
