@@ -48,6 +48,35 @@ body {
         position: relative;
         top: 40px;
       }
+      .radio{
+        display: inline-block;
+        position: relative;
+        .icon-play{
+          display: block;
+          width: 100px;
+          height: 100px;
+          background: url(../img/play.svg);
+          background-size: cover;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          -webkit-transform:translate(-50%,-50%);
+          transform:translate(-50%,-50%);
+        }
+        img{
+          vertical-align:middle;
+        }
+        &:before{
+          content : '';
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.5);
+        }
+      }
 
       &:after{
         content:'';
@@ -75,10 +104,7 @@ body {
     .mine{
       .content{
         float: left;
-
-        :last-child{
-          margin:0 0 0 24px;
-        }
+        margin:0 0 0 24px;
       }
       .portrait{
           float: left;
@@ -95,9 +121,7 @@ body {
     .others{
         .content{
           float: right;
-          :last-child{
-              margin:0 24px 0 0;
-          }
+          margin:0 24px 0 0;
         }
         .portrait{
           float: right;
@@ -116,11 +140,80 @@ body {
       }
 }
 
-.fade-appear {
-  opacity: 0.01;
+.input-wrapper{
+  width: 100%;
+  height: 100px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  border-top: 1px solid #ccc;
+  padding: 8px 20px;
+  box-sizing: border-box;
+  input{
+    display: block;
+    float: left;
+    width: 74%;
+    height: 80px;
+    margin-right: 4%;
+    border :none;
+    border-bottom: 1px solid #bbb;
+    outline: 0;
+    font-size: 28px;
+    padding-left: 14px;
+    box-sizing: border-box;
+  }
+  button{
+    display: block;
+    float: left;
+    width: 20%;
+    height: 70px;
+    line-height: 70px;
+    background: #f0f0f0;
+    font-size: 28px;
+    color : #9a9a9a;
+    border : 0;
+    outline: 0;
+    border-radius: 4px;
+
+    &.active{
+      color: #fff;
+      background: #009200;
+    }
+  }
 }
 
-.fade-appear.fade-appear-active {
-  opacity: 1;
-  transition: opacity .5s ease-in;
-}
+.radio-wrapper{
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background: black;
+    &.hide{
+      display: none;
+    }
+
+    .icon-close{
+      display: block;
+      position: absolute;
+      z-index: 101;
+      top: 20px;
+      left: 20px;
+      width: 70px;
+      height: 70px;
+      background: url(../img/close.png);
+      background-size: cover;
+    }
+    iframe{
+      position: absolute;
+      width: 100%;
+      height: 50%;
+      top: 50%;
+      left: 50%;
+      -webkit-transform:translate(-50%,-50%);
+      transform:translate(-50%,-50%);
+      border:0;
+    }
+  }

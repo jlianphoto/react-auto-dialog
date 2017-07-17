@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import createReactClass from 'create-react-class';
 import './wechat.scss';
 
 class Wechat extends Component {
@@ -8,50 +9,62 @@ class Wechat extends Component {
       this.index = 1;
 
       this.state = {
-        dialogs : [this.dialogs[0]]
+        dialogs : [this.dialogs[0]],
+        isShow : false,
+        writable : true,
+        isSend : false
       };
 
       this.timer = null;
-      this.add = this.add.bind(this);
   }
 
 
-  add(){
-    let aaa = {
-      '德善' : '粉肠粉肠粉肠粉肠粉肠粉肠'
-    }
-    this.state.dialogs.push(aaa);
+  closeRadio = ()=>{
     this.setState({
-      data : this.state.data
+      isShow : false
     })
-    let wx = window.wx;
-    console.log(111)
-    wx.previewImage({
-        current: 'http://img4.imgtn.bdimg.com/it/u=1365112016,127878692&fm=26&gp=0.jpg', // 当前显示图片的http链接
-        urls: ['http://img4.imgtn.bdimg.com/it/u=1365112016,127878692&fm=26&gp=0.jpg','http://img4.imgtn.bdimg.com/it/u=1365112016,127878692&fm=26&gp=0.jpg'] // 需要预览的图片http链接列表
-    });
+  }
+
+  showRadio = ()=>{
+    this.setState({
+      isShow : true
+    })
+  }
+
+  inputChange = (e)=>{
+    let isSend = e.target.value.length>0?true:false
+    this.setState({
+        isSend : isSend
+    })
+  }
+
+  sendMsg = ()=>{
+    this.refs.input.value = '';
+    this.setState({
+        isSend : false
+    })
   }
 
 
 
-  componentDidMount(){
-    console.log(this.dialogs)
-    console.log(this.props.config)
-    //timer
-    // this.$view = document.querySelector('#hiddenView');
-    // this.timer = setInterval(()=>{
-    //   if (this.index >= this.dialogs.length) {
-    //     clearInterval(this.timer);
-    //     return
-    //   }
-    //   this.state.dialogs.push(this.dialogs[this.index])
-    //   this.setState({
-    //     dialogs : this.state.dialogs
-    //   })
-    //   this.$view.scrollIntoView()
-    //   this.index++;
-    // },this.props.data.speed)
-  }
+  // componentDidMount(){
+  //   console.log(this.dialogs)
+  //   console.log(this.props.config)
+  //   //timer
+  //   this.$view = document.querySelector('#hiddenView');
+  //   this.timer = setInterval(()=>{
+  //     if (this.index >= this.dialogs.length) {
+  //       clearInterval(this.timer);
+  //       return
+  //     }
+  //     this.state.dialogs.push(this.dialogs[this.index])
+  //     this.setState({
+  //       dialogs : this.state.dialogs
+  //     })
+  //     this.$view.scrollIntoView()
+  //     this.index++;
+  //   },this.props.config.speed)
+  // }
 
 
   render() {
@@ -60,19 +73,47 @@ class Wechat extends Component {
     //   let name = Object.keys(item)[0],
     //       content = item[name],
     //       img = null,
-    //       type = '';
+    //       who = '';
 
     //   if (name==='me') {
-    //     name = this.props.data.mine.name;
-    //     img = this.props.data.mine.img;
-    //     type = 'mine'
+    //     name = this.props.config.mine.name;
+    //     img = this.props.config.mine.img;
+    //     who = 'mine'
     //   }else{
-    //     img = this.props.data.orthers.find(obj=>obj.name === name).img;
-    //     type = 'others';
+    //     img = this.props.config.orthers.find(obj=>obj.name === name).img;
+    //     who = 'others';
     //   }
 
 
-    //     return  <li className={type} key={index}>
+    //   let type = '';
+    //   if (typeof content === 'string') {
+    //     type = 'txt';
+    //   }else{
+    //     type = content.type;
+    //   }
+
+
+    //   switch(type){
+    //     case 'txt':
+          
+    //       break;
+    //     case 'img':
+          
+    //       break;
+    //     case 'video':
+
+    //       break
+    //     case 'question':
+
+    //       break
+    //     case 'answer':
+
+    //       break
+    //   }
+
+      
+
+    //     return  <li className={who} key={index}>
     //               <img src={img} alt=""/>
     //               <div className="content">
     //                 <p>{name}</p>
@@ -89,7 +130,6 @@ class Wechat extends Component {
 
     return (
       <div>
-        <button onClick={this.add}>试试</button>
         <ul className = 'wechat'>
           <li  className="mine" >
            <img src={require('../img/huan.jpg')} className='portrait' alt=""/>
@@ -99,7 +139,7 @@ class Wechat extends Component {
                asfadfasdfa
              </div>
            </div>
-         </li>
+          </li>  
           <li className="others">
             <img src={require('../img/huan.jpg')}  className='portrait' alt=''/>
             <div className='content'>
@@ -107,7 +147,27 @@ class Wechat extends Component {
               <img src='http://img4.imgtn.bdimg.com/it/u=1365112016,127878692&fm=26&gp=0.jpg' onClick={this.add} alt='' className='type-img'/>
             </div>
           </li>
+          <li className="others">
+            <img src={require('../img/huan.jpg')}  className='portrait' alt=''/>
+            <div className='content'>
+              <p>我啊</p>
+              <span className="radio" onClick={this.showRadio}>
+                <i className="icon-play"></i>
+                <img  src='http://img4.imgtn.bdimg.com/it/u=1365112016,127878692&fm=26&gp=0.jpg' onClick={this.add} alt='' className='type-img'/>
+              </span>
+            </div>
+          </li>
         </ul>
+        <div className={this.state.isShow?'radio-wrapper':'hide radio-wrapper'}>
+          <i className='icon-close' onClick={this.closeRadio}></i>
+          {this.state.isShow && <iframe allowfullscreen="true" src="https://v.qq.com/iframe/player.html?vid=m0357eb6ia2&tiny=0&auto=0"></iframe>}
+        </div>
+        
+
+        <section className='input-wrapper'>
+          <input ref='input' type="text" disabled={!this.state.writable} onKeyUp={this.inputChange}/>
+          <button className={this.state.isSend&&'active'} onClick={this.sendMsg}>发送</button>
+        </section>
         <div id="hiddenView"></div>
       </div>
     );

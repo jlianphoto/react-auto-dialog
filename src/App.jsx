@@ -7,12 +7,12 @@ let dialog = [
 	{'me' : '你去吃屎'},
 	{'me' : {
 		type : 'img',
-		source : ['http://img4.imgtn.bdimg.com/it/u=1365112016,127878692&fm=26&gp=0.jpg']
+		source : 'http://img4.imgtn.bdimg.com/it/u=1365112016,127878692&fm=26&gp=0.jpg'
 	}},
 	{'me' : {
 		type : 'video',
 		cover : 'http://img4.imgtn.bdimg.com/it/u=1365112016,127878692&fm=26&gp=0.jpg',
-		source : 'asdfadfasd'
+		source : 'https://v.qq.com/iframe/player.html?vid=m0357eb6ia2&tiny=0&auto=0'
 	}},
 	{'me' : {
 		type : 'question',
