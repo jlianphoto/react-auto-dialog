@@ -10,7 +10,7 @@ class Wechat extends Component {
       this.state = {
         dialogs : [],
         isShow : false,
-        writable : true,
+        writable : false,
         isSend : false,
         iframeSource:'https://v.qq.com/iframe/player.html?vid=m0357eb6ia2&tiny=0&auto=0',
       };
@@ -18,12 +18,18 @@ class Wechat extends Component {
       this.timer = null;
 
       this.key = '';
+      this.imgArr = [];
   }
 
 
-  showImg = () =>{
-    console.log(1111)
+  showImg = (source) =>{
+    let wx = window.wx;
+    wx.previewImage({
+        current: 'source', // 当前显示图片的http链接
+        urls: this.imgArr // 需要预览的图片http链接列表
+    });
   }
+
 
   closeRadio = ()=>{
     this.setState({
@@ -32,6 +38,7 @@ class Wechat extends Component {
     this.openTimer();
   }
 
+
   showRadio =(source) =>{
     this.closeTimer();
     this.setState({
@@ -39,6 +46,7 @@ class Wechat extends Component {
       isShow : true
     })
   }
+
 
   inputChange = (e)=>{
     let isSend = e.target.value.length>0?true:false
@@ -67,7 +75,6 @@ class Wechat extends Component {
 
     this.openTimer();
   }
-
 
 
   closeTimer = ()=>{
@@ -107,11 +114,15 @@ class Wechat extends Component {
         this.closeTimer();
       }
 
+      if (type === 'img') {
+        this.imgArr.push(content.source);
+      }
+
 
 
 
       this.index++;
-    },2000)
+    },this.props.config.speed)
   }
 
 
@@ -153,13 +164,9 @@ class Wechat extends Component {
 
         let diffElement = null;
         switch(type){
-          case 'txt':
-            diffElement = <div className='bubble'>{content}</div>
-            break;
-
           case 'img':
             var source = content.source;
-            diffElement = <img src={source} onClick={this.showImg} alt='' className='type-img'/>
+            diffElement = <img src={source} onClick={this.showImg.bind(this , source)} alt='' className='type-img'/>
             break;
 
           case 'video':
@@ -175,6 +182,9 @@ class Wechat extends Component {
             var question = content.msg;
             diffElement = <div className='bubble'>{question}</div>
             break
+
+          default :
+            diffElement = <div className='bubble'>{content}</div>
         }
 
         return  <li className={who} key={index}>
@@ -239,7 +249,7 @@ class Wechat extends Component {
 
         <section className='input-wrapper'>
           <input ref='input' type="text" disabled={!this.state.writable} onKeyUp={this.inputChange}/>
-          <button className={this.state.isSend&&'active'} onClick={this.sendMsg}>发送</button>
+          <button className={this.state.isSend?'active':''} onClick={this.sendMsg}>发送</button>
         </section>
         <div id="hiddenView"></div>
       </div>

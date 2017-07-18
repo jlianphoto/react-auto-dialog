@@ -41,6 +41,7 @@ body {
         font-size: 24px;
         border-radius: 4px;
         background: #fff;
+        border-radius: 8px;
       }
       .portrait{
         width: 90px;
@@ -93,7 +94,6 @@ body {
         max-width:560px; 
 
         p{
-          margin-left:24px;
           margin-bottom: 10px;
           font-size: 24px;
           height: 32px;
@@ -128,7 +128,7 @@ body {
           float: right;
         }
         p{
-          margin:0 24px 10px 0;
+          margin-bottom: 10px;
           text-align: right;
         }
         .bubble{
@@ -165,6 +165,11 @@ body {
     padding-left: 14px;
     box-sizing: border-box;
     background: #fff;
+
+    &[disabled] + button{
+      background: #f0f0f0;
+      color : #9a9a9a;
+    }
   }
   button{
     display: block;
@@ -172,9 +177,9 @@ body {
     width: 20%;
     height: 70px;
     line-height: 70px;
-    background: #f0f0f0;
+    background: #009200;
     font-size: 28px;
-    color : #9a9a9a;
+    color: #fff;
     border : 0;
     outline: 0;
     border-radius: 4px;
