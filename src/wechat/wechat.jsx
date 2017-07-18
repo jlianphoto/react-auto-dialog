@@ -5,10 +5,10 @@ class Wechat extends Component {
   constructor(props) {
       super(props);
       this.dialogs = props.dialog;
-      this.index = 1;
+      this.index = 0;
 
       this.state = {
-        dialogs : [this.dialogs[0]],
+        dialogs : [],
         isShow : false,
         writable : true,
         isSend : false,
@@ -16,6 +16,8 @@ class Wechat extends Component {
       };
 
       this.timer = null;
+
+      this.key = '';
   }
 
 
@@ -27,9 +29,11 @@ class Wechat extends Component {
     this.setState({
       isShow : false
     })
+    this.openTimer();
   }
 
-  showRadio = (source)=>{
+  showRadio =(source) =>{
+    this.closeTimer();
     this.setState({
       iframeSource : source,
       isShow : true
@@ -44,10 +48,70 @@ class Wechat extends Component {
   }
 
   sendMsg = ()=>{
+    if (!this.state.isSend) return;
+
+    let $value = this.refs.input.value;
+    let answer = {'me' : $value};
+
+    this.state.dialogs.push(answer);
+    if ($value.indexOf(this.key) == -1) {
+      this.dialogs.splice(this.index,1);
+    }else{
+      this.dialogs.splice(this.index+1,1);
+    }
+
     this.refs.input.value = '';
     this.setState({
         isSend : false
     })
+
+    this.openTimer();
+  }
+
+
+
+  closeTimer = ()=>{
+    clearInterval(this.timer);
+    this.setState({writable : true});
+  }
+
+
+  openTimer = ()=>{
+    this.timer = setInterval(()=>{
+      if (this.index >= this.dialogs.length) {
+        this.closeTimer();
+        return
+      }
+
+      this.state.dialogs.push(this.dialogs[this.index]);
+      this.setState({
+        dialogs : this.state.dialogs,
+        writable : false
+      })
+      this.$view.scrollIntoView()
+
+
+
+      //if it's question , stop timer;
+      let name = Object.keys(this.dialogs[this.index])[0],
+          content = this.dialogs[this.index][name];
+      let type = '';
+      if (typeof content === 'string') {
+        type = 'txt';
+      }else{
+        type = content.type;
+      }
+
+      if (type === 'question') {
+        this.key = content.key;
+        this.closeTimer();
+      }
+
+
+
+
+      this.index++;
+    },2000)
   }
 
 
@@ -56,18 +120,9 @@ class Wechat extends Component {
   componentDidMount(){
     //timer
     this.$view = document.querySelector('#hiddenView');
-    this.timer = setInterval(()=>{
-      if (this.index >= this.dialogs.length) {
-        clearInterval(this.timer);
-        return
-      }
-      this.state.dialogs.push(this.dialogs[this.index])
-      this.setState({
-        dialogs : this.state.dialogs
-      })
-      this.$view.scrollIntoView()
-      this.index++;
-    },5000)
+    
+    this.openTimer();
+
   }
 
 
@@ -99,9 +154,7 @@ class Wechat extends Component {
         let diffElement = null;
         switch(type){
           case 'txt':
-            diffElement = <div className='bubble'>
-                            {content}
-                          </div>
+            diffElement = <div className='bubble'>{content}</div>
             break;
 
           case 'img':
@@ -112,7 +165,7 @@ class Wechat extends Component {
           case 'video':
             var cover = content.cover;
             var source = content.source;
-            diffElement = <span className="radio" onClick={(source) =>{this.showRadio(source)}}>
+            diffElement = <span className="radio" onClick={this.showRadio.bind(this,source)}>
                             <i className="icon-play"></i>
                             <img  src={cover} alt='' className='type-img'/>
                           </span>
@@ -120,12 +173,9 @@ class Wechat extends Component {
             
           case 'question':
             var question = content.msg;
-            diffElement = <div className='bubble'>
-                            {question}
-                          </div>
+            diffElement = <div className='bubble'>{question}</div>
             break
         }
-
 
         return  <li className={who} key={index}>
                     <img src={img} alt="" className='portrait'/>
@@ -183,7 +233,7 @@ class Wechat extends Component {
         </ul>
         <div className={this.state.isShow?'radio-wrapper':'hide radio-wrapper'}>
           <i className='icon-close' onClick={this.closeRadio}></i>
-          {this.state.isShow && <iframe allowfullscreen="true" title="video" src={this.state.iframeSource}></iframe>}
+          {this.state.isShow && <iframe title="video" src={this.state.iframeSource}></iframe>}
         </div>
         
 

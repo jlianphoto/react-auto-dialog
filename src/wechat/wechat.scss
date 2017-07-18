@@ -28,6 +28,7 @@ body {
     box-sizing: border-box;
     width: 100%;
     padding: 16px 20px;
+    padding-bottom: 120px;
 
     li{
       margin-bottom: 40px;
@@ -146,6 +147,7 @@ body {
   position: fixed;
   bottom: 0;
   left: 0;
+  z-index: 1;
   background: #fff;
   border-top: 1px solid #ccc;
   padding: 8px 20px;
@@ -162,6 +164,7 @@ body {
     font-size: 28px;
     padding-left: 14px;
     box-sizing: border-box;
+    background: #fff;
   }
   button{
     display: block;
