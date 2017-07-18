@@ -25,8 +25,8 @@ class Wechat extends Component {
   showImg = (source) =>{
     let wx = window.wx;
     wx.previewImage({
-        current: 'source', // 当前显示图片的http链接
-        urls: this.imgArr // 需要预览的图片http链接列表
+        current: 'source',
+        urls: this.imgArr
     });
   }
 
@@ -35,7 +35,7 @@ class Wechat extends Component {
     this.setState({
       isShow : false
     })
-    this.openTimer();
+    this.state.writable || this.openTimer();
   }
 
 
