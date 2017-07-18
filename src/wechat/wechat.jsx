@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import preload from './preload';
 import './wechat.scss';
 
 class Wechat extends Component {
@@ -12,7 +13,7 @@ class Wechat extends Component {
         isShow : false,
         writable : false,
         isSend : false,
-        iframeSource:'https://v.qq.com/iframe/player.html?vid=m0357eb6ia2&tiny=0&auto=0',
+        iframeSource:'',
       };
 
       this.timer = null;
@@ -25,7 +26,7 @@ class Wechat extends Component {
   showImg = (source) =>{
     let wx = window.wx;
     wx.previewImage({
-        current: 'source',
+        current: source,
         urls: this.imgArr
     });
   }
@@ -48,21 +49,15 @@ class Wechat extends Component {
   }
 
 
-  inputChange = (e)=>{
-    let isSend = e.target.value.length>0?true:false
-    this.setState({
-        isSend : isSend
-    })
-  }
-
   sendMsg = ()=>{
-    if (!this.state.isSend) return;
+    if (!this.state.writable) return;
 
     let $value = this.refs.input.value;
     let answer = {'me' : $value};
 
     this.state.dialogs.push(answer);
-    if ($value.indexOf(this.key) == -1) {
+
+    if ($value.indexOf(this.key) === -1) {
       this.dialogs.splice(this.index,1);
     }else{
       this.dialogs.splice(this.index+1,1);
@@ -70,8 +65,10 @@ class Wechat extends Component {
 
     this.refs.input.value = '';
     this.setState({
-        isSend : false
-    })
+        dialogs : this.state.dialogs,
+        writable : false
+      })
+    setTimeout(_=>{this.$view.scrollIntoView()},0);
 
     this.openTimer();
   }
@@ -115,7 +112,7 @@ class Wechat extends Component {
       }
 
       if (type === 'img') {
-        this.imgArr.push(content.source);
+        this.imgArr.push(content.image);
       }
 
 
@@ -132,7 +129,10 @@ class Wechat extends Component {
     //timer
     this.$view = document.querySelector('#hiddenView');
     
-    this.openTimer();
+    preload(this.props.dialog , ()=>{
+      this.openTimer();
+    })
+    
 
   }
 
@@ -165,12 +165,12 @@ class Wechat extends Component {
         let diffElement = null;
         switch(type){
           case 'img':
-            var source = content.source;
+            var source = content.image;
             diffElement = <img src={source} onClick={this.showImg.bind(this , source)} alt='' className='type-img'/>
             break;
 
           case 'video':
-            var cover = content.cover;
+            var cover = content.image;
             var source = content.source;
             diffElement = <span className="radio" onClick={this.showRadio.bind(this,source)}>
                             <i className="icon-play"></i>
@@ -203,9 +203,7 @@ class Wechat extends Component {
 
   render() {
 
-
     let list = this.listHandler();
-
 
     return (
       <div>
@@ -248,8 +246,8 @@ class Wechat extends Component {
         
 
         <section className='input-wrapper'>
-          <input ref='input' type="text" disabled={!this.state.writable} onKeyUp={this.inputChange}/>
-          <button className={this.state.isSend?'active':''} onClick={this.sendMsg}>发送</button>
+          <input ref='input' type="text" disabled={!this.state.writable}/>
+          <button onClick={this.sendMsg}>发送</button>
         </section>
         <div id="hiddenView"></div>
       </div>

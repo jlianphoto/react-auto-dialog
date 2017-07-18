@@ -91,7 +91,11 @@ body {
 
 
     .content{
-        max-width:560px; 
+        max-width:460px;
+
+        img{
+          max-width: 100%;
+        }
 
         p{
           margin-bottom: 10px;
