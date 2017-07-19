@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Wechat from './wechat/wechat.jsx';
+import Wechat from './lib/wechat.jsx';
 
 
 
@@ -13,11 +13,11 @@ let dialog = [
 	// 	type : 'img',
 	// 	image : 'http://image.bingodu.com/group1/M04/09/D3/CgELI1hSgTqAfjKmAABxJF7qaQA08.jpeg'
 	// }},
-	// {'me' : {
-	// 	type : 'video',
-	// 	image : 'http://img4.imgtn.bdimg.com/it/u=1365112016,127878692&fm=26&gp=0.jpg',
-	// 	source : 'https://v.qq.com/iframe/player.html?vid=m0357eb6ia2&tiny=0&auto=0'
-	// }},
+	{'me' : {
+		type : 'video',
+		image : 'http://img4.imgtn.bdimg.com/it/u=1365112016,127878692&fm=26&gp=0.jpg',
+		source : 'https://v.qq.com/iframe/player.html?vid=m0357eb6ia2&tiny=0&auto=0'
+	}},
 
 	// {'德善' : {
 	// 	type : 'question',
