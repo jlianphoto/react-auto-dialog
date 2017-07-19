@@ -241,13 +241,13 @@ class Wechat extends Component {
         <ul className = 'wechat'>
           {list}
         </ul>
-        <div className={this.state.isShow?'radio-wrapper':'hide radio-wrapper'}>
+        <div className={this.state.isShow?'wechat-radio-wrapper':'hide wechat-radio-wrapper'}>
           <i className='icon-close' onClick={this.closeRadio}></i>
           {this.state.isShow && <iframe title="video" src={this.state.iframeSource}></iframe>}
         </div>
         
 
-        <section className='input-wrapper'>
+        <section className='wechat-input-wrapper'>
           <input ref='input' type="text" disabled={!this.state.writable}/>
           <button onClick={this.sendMsg}>发送</button>
         </section>
