@@ -20,6 +20,8 @@ class Wechat extends Component {
 
       this.key = '';
       this.imgArr = [];
+
+      this.end = false;
   }
 
 
@@ -54,23 +56,46 @@ class Wechat extends Component {
 
     let $value = this.refs.input.value;
     let answer = {'me' : $value};
-
     this.state.dialogs.push(answer);
 
+    if (this.end) {
+      this.defaultFuzzyAnswer($value)
+    }else{
+      this.fuzzyAnswer($value);
+    }
+
+    this.refs.input.value = '';
+    this.setState({
+      dialogs : this.state.dialogs,
+      writable : false
+    })
+
+    this.openTimer();
+
+
+  }
+
+  //fuzzy answer
+  fuzzyAnswer($value){
     if ($value.indexOf(this.key) === -1) {
       this.dialogs.splice(this.index,1);
     }else{
       this.dialogs.splice(this.index+1,1);
     }
+  }
 
-    this.refs.input.value = '';
-    this.setState({
-        dialogs : this.state.dialogs,
-        writable : false
-      })
-    setTimeout(_=>{this.$view.scrollIntoView()},0);
+  //default fuzzey answer
+  defaultFuzzyAnswer($value){
 
-    this.openTimer();
+    let match = this.props.config.fuzzy.answer.find(item=>$value.indexOf(item.key) !== -1);
+    let answer = null;
+    if (match) {
+      answer = {'德善' : match.msg};
+    }else{
+      answer = {'德善' : this.props.config.fuzzy.default};
+    }
+    this.dialogs.push(answer);
+
   }
 
 
@@ -84,6 +109,7 @@ class Wechat extends Component {
     this.timer = setInterval(()=>{
       if (this.index >= this.dialogs.length) {
         this.closeTimer();
+        this.end = true;
         return
       }
 
@@ -92,8 +118,6 @@ class Wechat extends Component {
         dialogs : this.state.dialogs,
         writable : false
       })
-      this.$view.scrollIntoView()
-
 
 
       //if it's question , stop timer;
@@ -116,8 +140,6 @@ class Wechat extends Component {
       }
 
 
-
-
       this.index++;
     },this.props.config.speed)
   }
@@ -126,14 +148,14 @@ class Wechat extends Component {
 
 
   componentDidMount(){
-    //timer
     this.$view = document.querySelector('#hiddenView');
     
-    preload(this.props.dialog , ()=>{
-      this.openTimer();
-    })
-    
+    //start
+    preload(this.props.config , this.props.dialog , _=>this.openTimer());
+  }
 
+  componentDidUpdate(){
+    this.$view.scrollIntoView();
   }
 
 
@@ -143,6 +165,17 @@ class Wechat extends Component {
             content = item[name],
             img = null,
             who = '';
+
+        if (name === 'tip') {
+          return <li className='tips' key={index}>{content}</li>
+        }
+
+        let type = '';
+        if (typeof content === 'string') {
+          type = 'txt';
+        }else{
+          type = content.type;
+        }
 
         if (name==='me') {
           name = this.props.config.mine.name;
@@ -154,13 +187,7 @@ class Wechat extends Component {
         }
 
 
-        let type = '';
-        if (typeof content === 'string') {
-          type = 'txt';
-        }else{
-          type = content.type;
-        }
-
+        
 
         let diffElement = null;
         switch(type){
@@ -187,13 +214,17 @@ class Wechat extends Component {
             diffElement = <div className='bubble'>{content}</div>
         }
 
-        return  <li className={who} key={index}>
+
+          return  <li className={who} key={index}>
                     <img src={img} alt="" className='portrait'/>
                     <div className="content">
                       <p>{name}</p>
                       {diffElement}
                     </div>
                   </li>
+        
+
+        
       })
 
       return list;
@@ -208,35 +239,6 @@ class Wechat extends Component {
     return (
       <div>
         <ul className = 'wechat'>
-          {/*
-          <li  className="mine" >
-           <img src={require('../img/huan.jpg')} className='portrait' alt=""/>
-           <div className="content">
-             <p>sdf</p>
-             <div className='bubble'>
-               asfadfasdfa
-             </div>
-           </div>
-          </li>  
-          <li className="others">
-            <img src={require('../img/huan.jpg')}  className='portrait' alt=''/>
-            <div className='content'>
-              <p>我啊</p>
-              <img src='http://img4.imgtn.bdimg.com/it/u=1365112016,127878692&fm=26&gp=0.jpg' onClick={this.add} alt='' className='type-img'/>
-            </div>
-          </li>
-          <li className="others">
-            <img src={require('../img/huan.jpg')}  className='portrait' alt=''/>
-            <div className='content'>
-              <p>我啊</p>
-              <span className="radio" onClick={this.showRadio}>
-                <i className="icon-play"></i>
-                <img  src='http://img4.imgtn.bdimg.com/it/u=1365112016,127878692&fm=26&gp=0.jpg' onClick={this.add} alt='' className='type-img'/>
-              </span>
-            </div>
-          </li>
-          */} 
-
           {list}
         </ul>
         <div className={this.state.isShow?'radio-wrapper':'hide radio-wrapper'}>

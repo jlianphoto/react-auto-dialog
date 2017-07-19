@@ -1,6 +1,15 @@
-function preload(dialog , callback){
+function preload(config , dialog , callback){
   let sourceArr = [];
   let index = 0;
+
+
+  sourceArr.push(config.mine.img);
+  
+  if (config.orthers && config.orthers.length>0) {
+    config.orthers.forEach(item=>{
+      sourceArr.push(item.img);
+    })
+  }
 
   dialog.forEach(item=>{
     let name = Object.keys(item)[0],
