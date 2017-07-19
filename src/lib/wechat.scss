@@ -50,6 +50,7 @@ body {
     li{
       margin-bottom: 40px;
       list-style:none;
+
       .bubble{
         padding: 16px 30px;
         min-height: 60px;
@@ -71,6 +72,7 @@ body {
       .radio{
         display: inline-block;
         position: relative;
+        
         .icon-play{
           display: block;
           width: 100px;

@@ -27,10 +27,12 @@ class Wechat extends Component {
 
   showImg = (source) =>{
     let wx = window.wx;
-    wx.previewImage({
-        current: source,
-        urls: this.imgArr
-    });
+    if (wx) {
+      wx.previewImage({
+          current: source,
+          urls: this.imgArr
+      });
+    }
   }
 
 
@@ -198,6 +200,7 @@ class Wechat extends Component {
 
           case 'video':
             var cover = content.image;
+            // eslint-disable-next-line
             var source = content.source;
             diffElement = <span className="radio" onClick={this.showRadio.bind(this,source)}>
                             <i className="icon-play"></i>
