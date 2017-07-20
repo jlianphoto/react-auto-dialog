@@ -60,11 +60,11 @@ let config = {
 		},
 		{
 			name : '德善爸爸',
-			img : require('./img/de_father.jpg')
+			img : require('./img/de.jpg')
 		},
 		{
 			name : '德善妈妈',
-			img : require('./img/de_mother.jpg')
+			img : require('./img/de.jpg')
 		},
 	],
 	fuzzy : {
