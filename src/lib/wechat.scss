@@ -55,6 +55,12 @@ body {
         border-radius: 12px;
         word-wrap: normal;
         box-sizing: border-box;
+        word-break: break-all;
+
+        a{
+          color: #22a2ff;
+          text-decoration: none;
+        }
       }
       .portrait{
         width: 120px;

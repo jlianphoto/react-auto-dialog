@@ -92,9 +92,9 @@ class Wechat extends Component {
     let match = this.props.config.fuzzy.answer.find(item=>$value.indexOf(item.key) !== -1);
     let answer = null;
     if (match) {
-      answer = {'德善' : match.msg};
+      answer =  match.msg
     }else{
-      answer = {'德善' : this.props.config.fuzzy.default};
+      answer = this.props.config.fuzzy.default;
     }
     this.dialogs.push(answer);
 
@@ -229,7 +229,7 @@ class Wechat extends Component {
             break
 
           default :
-            diffElement = <div className='bubble'>{content}</div>
+            diffElement = <div className='bubble' dangerouslySetInnerHTML={{__html: content}} />
         }
 
 
