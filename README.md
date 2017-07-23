@@ -89,7 +89,7 @@ let config = {
 				msg : {'正峰' : '你输入a干什么'}
 			}
 		],
-		default : {'正峰' : 'if it doesn't macth anything , this message will be sent'}
+		default : {'正峰' : 'if it doesn't macth anything , this message will be sent'},
 	},
 }
 
