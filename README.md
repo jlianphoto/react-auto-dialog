@@ -19,7 +19,7 @@ create auto dialog with react in wechat
 
 ## Demo
 
-![demo](https//qr.api.cli.im/qr?data=http%253A%252F%252Fdemo.jlianphoto.com%252Fdialog%252F&level=H&transparent=false&bgcolor=%23ffffff&forecolor=%23000000&blockpixel=12&marginblock=1&logourl=http%3A%2F%2Foss-cn-hangzhou.aliyuncs.com%2Fpublic-cli%2Ffree%2F0be7e5fa89c8f09aaba2d62b319af7a11500810824.jpeg&size=280&kid=cliim&key=6850cee0186e9a01c02837c100a20da4)
+![demo](https://jlianphoto.github.io/react-auto-dialog/img/1500814394.png)
 
 
 ## Requirements

@@ -102,7 +102,7 @@ image
 	image : '../img/img1.jpg'
 }}`
 
-video （最后使用腾讯视频的分享 ， 把iframe的链接写入source）
+video （建议使用腾讯视频的分享 ， 把iframe的链接写入source）
 
 `{'name' : {
 	type : 'video',
