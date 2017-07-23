@@ -127,7 +127,7 @@ class Wechat extends Component {
       let name = Object.keys(this.dialogs[this.index])[0],
           content = this.dialogs[this.index][name];
       let type = '';
-      if (typeof content === 'string' && name !== 'tip') {
+      if (typeof content === 'string') {
         type = 'txt';
         this.slowDown(content);
       }else{
@@ -150,11 +150,11 @@ class Wechat extends Component {
 
 
   slowDown(words){
-    let n = parseInt(words.length/50); 
+    let n = parseInt(words.length/50,10); 
     if (n>0) {
       clearInterval(this.timer);
 
-      let time = this.props.config.speed + 500*n;
+      let time = this.props.config.speed + 1000*n;
       setTimeout(_=>{
           this.openTimer();
       },time)
@@ -195,8 +195,8 @@ class Wechat extends Component {
         }
 
         if (name==='me') {
-          name = this.props.config.mine.name;
-          img = this.props.config.mine.img;
+          name = this.props.config.me.name;
+          img = this.props.config.me.img;
           who = 'mine'
         }else{
           img = this.props.config.orthers.find(obj=>obj.name === name).img;

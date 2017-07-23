@@ -3,7 +3,7 @@ function preload(config , dialog , callback){
   let index = 0;
 
 
-  sourceArr.push(config.mine.img);
+  sourceArr.push(config.me.img);
   
   if (config.orthers && config.orthers.length>0) {
     config.orthers.forEach(item=>{
