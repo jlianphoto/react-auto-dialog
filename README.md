@@ -13,8 +13,7 @@ create auto dialog with react in wechat
 
 ## Preview
 
-![](https://jlianphoto.github.io/react-auto-dialog/img/GIF1.gif)
-![](https://jlianphoto.github.io/react-auto-dialog/img/GIF2.gif)
+![](https://jlianphoto.github.io/react-auto-dialog/img/GIF1.gif)![](https://jlianphoto.github.io/react-auto-dialog/img/Gif2.gif)
 
 ## Demo
 
@@ -91,7 +90,7 @@ let config = {
 			}
 		],
 		default : {'正峰' : 'if it doesn't macth anything , this message will be sent'}
-	}
+	},
 }
 
 ```
@@ -152,7 +151,7 @@ let dialog = [
 	{'me' : '祖贤的小学同学'},
 	{'me' : ' 我要不要去参加联谊'},
 	{'me' : ' 我要不要去参加联谊啊？'},
-	
+
 	//image
 	{'东龙' : {
 		type : 'img',
@@ -176,6 +175,8 @@ let dialog = [
 	{'东龙' : '我也觉得他很傻，可是啊，他就这样子，我也拿他没办法'},
 ]
 ```
+
+[Full example code](https://github.com/jlianphoto/react-auto-dialog/blob/master/src/App.jsx)
 
 
 
