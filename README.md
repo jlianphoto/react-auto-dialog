@@ -67,40 +67,34 @@ class App extends Component {
 
 ```js
 let config = {
-	speed: 2000,
-	me: {
-		name : '德善',
-		img : require('./img/de.jpg')
-	},
-	orthers:[
-		{
-			name : '正峰',
-			img : '../img/img0.jpg'
-		},
-		{
-			name : '正峰妈妈',
-			img : '../img/img1.jpg'
-		},
-	],
-	fuzzy : {
-		answer : [
-			{
-				key : '正',
-				msg :  {'正峰' : '正八就是个傻瓜'}
-			},
-			{
-				key : '1',
-				msg :  {'正峰' : '你输入1干什么'}
-			},
-			{
-				key : 'a',
-				msg : {'正峰' : '你输入a干什么'}
-			}
-		],
-		default : {
-			'正峰' : 'if it doesn't macth anything , this message will be sent'
-		}
-	}
+  speed: 2000,
+  me: {
+    name : '德善',
+    img : require('./img/de.jpg')
+  },
+  orthers:[
+    {
+      name : '正峰',
+      img : '//img5.imgtn.bdimg.com/it/u=3451266450,2355062325&fm=26&gp=0.jpg'
+    },
+    {
+      name : '正峰妈妈',
+      img : '//img0.imgtn.bdimg.com/it/u=217392933,3688331757&fm=26&gp=0.jpg'
+    },
+  ],
+  fuzzy : {
+    answer : [
+      {
+        key : '1',
+        msg :  {'正峰' : '你输入1干什么'}
+      },
+      {
+        key : 'a',
+        msg : {'正峰' : '你输入a干什么'}
+      }
+    ],
+    default : {'正峰' : '了解组件更多相关配'}
+  }
 }
 
 ```
