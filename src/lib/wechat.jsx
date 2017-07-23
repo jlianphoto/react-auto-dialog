@@ -8,6 +8,8 @@ class Wechat extends Component {
       this.dialogs = props.dialog;
       this.index = 0;
 
+      this.speed = this.props.config.speed || 2000;
+
       this.state = {
         dialogs : [],
         isShow : false,
@@ -145,7 +147,7 @@ class Wechat extends Component {
 
 
       this.index++;
-    },this.props.config.speed)
+    },this.speed)
   }
 
 
@@ -154,7 +156,7 @@ class Wechat extends Component {
     if (n>0) {
       clearInterval(this.timer);
 
-      let time = this.props.config.speed + 1000*n;
+      let time = this.speed + 1000*n;
       setTimeout(_=>{
           this.openTimer();
       },time)

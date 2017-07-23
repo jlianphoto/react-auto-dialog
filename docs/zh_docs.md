@@ -1,34 +1,15 @@
 # react-auto-dialog
 
-create auto dialog with react in wechat
+模仿微信对话组件
 
 ## Feature
 
-- auto dialog
-- role assignment
-- image preview
-- video
-- fuzzy matching
+- 自动对话
+- 自定义多人物
+- 图片预览（使用微信的js-sdk）
+- 视频
+- 模糊匹配
 
-
-## Preview
-
-![](https://jlianphoto.github.io/react-auto-dialog/img/GIF1.gif)
-
-![](https://jlianphoto.github.io/react-auto-dialog/img/Gif2.gif)
-
-## Demo
-
-![demo](https//qr.api.cli.im/qr?data=http%253A%252F%252Fdemo.jlianphoto.com%252Fdialog%252F&level=H&transparent=false&bgcolor=%23ffffff&forecolor=%23000000&blockpixel=12&marginblock=1&logourl=http%3A%2F%2Foss-cn-hangzhou.aliyuncs.com%2Fpublic-cli%2Ffree%2F0be7e5fa89c8f09aaba2d62b319af7a11500810824.jpeg&size=280&kid=cliim&key=6850cee0186e9a01c02837c100a20da4)
-
-
-## Requirements
-
-React
-
-[flexible](https://github.com/amfe/lib-flexible/)
-
-Wechat JS-SDK
 
 ## Used
 
@@ -49,28 +30,25 @@ class App extends Component {
 }
 ```
 
-## DOCS
-
-[中文文档](https://github.com/jlianphoto/react-auto-dialog/blob/master/docs/docs.md)
-
 
 ### config
 
 |key|description|defualt|type/options|
 |:---|---|---|---|
-| `speed`|the dialog's speed |2000|Number|
-|`me`|the message of the host||Object|
-|`orthers`|orther people message||Array|
-|`fuzzy`|when the dialog has finished , match the customer's word and answer the question.||Array|
+| `speed`|对话速度 |2000|Number|
+|`me`|定义自己（头像，人名）||Object|
+|`orthers`|定义其他人||Array|
+|`fuzzy`|自动播放结束时 ， 模糊匹配用户输入后的反馈.||Array|
 
 - Eample
 
 ```js
 let config = {
+	//对话速度
 	speed: 2000,
 	me: {
-		name : '德善',
-		img : require('./img/de.jpg')
+		name : '德善',  //昵称
+		img : require('./img/de.jpg') //头像
 	},
 	orthers:[
 		{
@@ -82,6 +60,7 @@ let config = {
 			img : '../img/img1.jpg'
 		},
 	],
+	//自动对话结束后，用户任意输入一个字词，会匹配answer里面的一个key值 ， 例如 用户输入 123 ， 则反馈{'正峰' : '你输入1干什么'} ， 没有匹配到反馈default
 	fuzzy : {
 		answer : [
 			{
@@ -123,7 +102,7 @@ image
 	image : '../img/img1.jpg'
 }}`
 
-video
+video （最后使用腾讯视频的分享 ， 把iframe的链接写入source）
 
 `{'name' : {
 	type : 'video',
@@ -131,7 +110,7 @@ video
 	source : 'http://iframe.html'
 }}`
 
-question
+question (设置type为question , 自动对话会关闭 ， 等待用户输入 ， 用户输入后与key 进行匹配 ， 用户模糊匹配成功， 则返回下一条dialog , 匹配失败，则跳过下一条dialog ，开始自动播放)
 
 `{'name' : {
 	type : 'question',

@@ -144,23 +144,6 @@ body {
 
     .mine{
       .content{
-        float: left;
-        margin:0 0 0 24px;
-      }
-      .portrait{
-          float: left;
-        }
-      .bubble{
-        &:before{
-          @extend %arrow;
-          border-right-color: #fff;
-          left: -26px;
-        }
-      }
-    }
-
-    .others{
-        .content{
           float: right;
           margin:0 24px 0 0;
         }
@@ -177,7 +160,24 @@ body {
             right: -26px;
           }
         }
+    }
+
+    .others{
+      .content{
+        float: left;
+        margin:0 0 0 24px;
       }
+      .portrait{
+          float: left;
+        }
+      .bubble{
+        &:before{
+          @extend %arrow;
+          border-right-color: #fff;
+          left: -26px;
+        }
+      }
+    }
 }
 
 .wechat-input-wrapper{
