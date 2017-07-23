@@ -19,7 +19,7 @@ create auto dialog with react in wechat
 
 ## Demo
 
-![demo](https://jlianphoto.github.io/react-auto-dialog/img/1500814394.png)
+![](https://jlianphoto.github.io/react-auto-dialog/img/1500814394.png)
 
 
 ## Requirements
