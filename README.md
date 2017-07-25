@@ -145,16 +145,7 @@ let dialog = [
 	{'tip' : 'NO.03  再见初恋'},
 	{'正焕' : '在这儿干什么'},
 	{'me' : '有事想问你'},
-	{'me' : '那个'},
 	{'正焕' : '进我屋说吧，太冷了'},
-	{'正焕' : '说吧'},
-	{'me' : '哦'},
-	{'正焕' : '什么事啊？'},
-	{'me' : '我这周要去参加一对一联谊'},
-	{'me' : '德善高中二年级，名字叫崔在英'},
-	{'me' : '祖贤的小学同学'},
-	{'me' : ' 我要不要去参加联谊'},
-	{'me' : ' 我要不要去参加联谊啊？'},
 
 	//image
 	{'东龙' : {
@@ -165,7 +156,7 @@ let dialog = [
 	//video
 	{'正焕' : {
 		type : 'video',
-		image : '//img4.imgtn.bdimg.com/it/u=1365112016,127878692&fm=26&gp=0.jpg',
+		image : './img/videCover.jpg',
 		source : '//v.qq.com/iframe/player.html?vid=m0357eb6ia2&tiny=0&auto=0'
 	}},
 	

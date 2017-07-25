@@ -54,20 +54,10 @@ let dialog = [
 	{'me' : ' 我要不要去参加联谊'},
 	{'me' : ' 我要不要去参加联谊啊？'},
 	{'tip' : '......'},
-	{'正焕' : {
-		type : 'video',
-		image : require('./img/cover.jpg'),
-		source : '//v.qq.com/iframe/player.html?vid=m0357eb6ia2&tiny=0&auto=0'
-	}},
+	
 	{'tip' : '人生就像一盒巧克力，打开之前永远都不知道下一个吃到的是什么味道，就算是拿到了一颗超苦的巧克力豆，也无能为力，这就是我所选择的命运，不能后悔，不能哭哭啼啼，也不能……心痛。'},
 	
-	{'东龙' : {
-		type:'question',
-		msg:'你觉得正八是不是傻',
-		key : '不'
-	}},
-	{'东龙' : '可怜的正八，只是感到了观众'},
-	{'东龙' : '我也觉得他很傻，可是啊，他就这样子，我也拿他没办法'},
+	{'东龙' : '德善，善宇，东龙，正焕，崔泽，你最喜欢哪个？'},
 ]
 
 
@@ -95,20 +85,56 @@ let config = {
 			name : '东龙',
 			img : require('./img/dong.jpg')
 		},
+		{
+			name : '崔泽',
+			img : require('./img/ze.jpg')
+		},
+		{
+			name : '善宇',
+			img : require('./img/yu.jpg')
+		}
 	],
 	fuzzy : {
 		answer : [
 			{
-				key : '正',
-				msg :  {'东龙' : '正八就是个傻瓜'}
+				key : '德',
+				msg :  {'me' : {
+					type : 'video',
+					image : 'http://shp.qpic.cn/qqvideo_ori/0/d03875nc1zl_496_280/0',
+					source : 'https://v.qq.com/iframe/player.html?vid=d03875nc1zl&tiny=0&auto=0'
+				}}
 			},
 			{
-				key : '1',
-				msg :  {'东龙' : '你输入1干什么'}
+				key : '焕',
+				msg :  {'正焕' : {
+					type : 'video',
+					image : require('./img/cover.jpg'),
+					source : '//v.qq.com/iframe/player.html?vid=m0357eb6ia2&tiny=0&auto=0'
+				}},
 			},
 			{
-				key : 'a',
-				msg : {'东龙' : '你输入a干什么'}
+				key : '宇',
+				msg : {'善宇' : {
+					type : 'video',
+					image : 'http://shp.qpic.cn/qqvideo_ori/0/c0188xk4c3z_496_280/0',
+					source : 'https://v.qq.com/iframe/player.html?vid=c0188xk4c3z&tiny=0&auto=0'
+				}}
+			},
+			{
+				key : '泽',
+				msg : {'崔泽':{
+					type : 'video',
+					image : 'http://puui.qpic.cn/qqvideo_ori/0/d05020davl1_496_280/0',
+					source : 'https://v.qq.com/iframe/player.html?vid=g0399i6y9re&tiny=0&auto=0'
+				}}
+			},
+			{
+				key : '龙',
+				msg : {'东龙':{
+					type : 'video',
+					image : 'http://puui.qpic.cn/qqvideo_ori/0/m0364cxj4xl_496_280/0',
+					source : 'https://v.qq.com/iframe/player.html?vid=m0364cxj4xl&tiny=0&auto=0'
+				}}
 			}
 		],
 		default : {'正焕' : '了解组件更多相关配：<a href="https://github.com/jlianphoto/react-auto-dialog">https://github.com/jlianphoto/react-auto-dialog<a/>'}
