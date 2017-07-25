@@ -13,9 +13,13 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build-component": "webpack -p --config build-component.js"
   },
   "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.16",
     "node-sass": "^4.5.3",
     "postcss-pxtorem": "^4.0.1",
     "sass-loader": "^6.0.6"

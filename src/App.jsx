@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import Wechat from './lib/wechat.jsx';
-
-
+import Wechat from './lib/wechat';
 
 let dialog = [
 	{'tip' : 'NO.01 温暖的一句话'},
@@ -58,7 +56,7 @@ let dialog = [
 	{'tip' : '......'},
 	{'正焕' : {
 		type : 'video',
-		image : '//img4.imgtn.bdimg.com/it/u=1365112016,127878692&fm=26&gp=0.jpg',
+		image : require('./img/cover.jpg'),
 		source : '//v.qq.com/iframe/player.html?vid=m0357eb6ia2&tiny=0&auto=0'
 	}},
 	{'tip' : '人生就像一盒巧克力，打开之前永远都不知道下一个吃到的是什么味道，就算是拿到了一颗超苦的巧克力豆，也无能为力，这就是我所选择的命运，不能后悔，不能哭哭啼啼，也不能……心痛。'},
@@ -83,11 +81,11 @@ let config = {
 	orthers:[
 		{
 			name : '正峰',
-			img : '//img5.imgtn.bdimg.com/it/u=3451266450,2355062325&fm=26&gp=0.jpg'
+			img : require('./img/feng.jpg')
 		},
 		{
 			name : '正峰妈妈',
-			img : '//img0.imgtn.bdimg.com/it/u=217392933,3688331757&fm=26&gp=0.jpg'
+			img : require('./img/z_mother.jpg')
 		},
 		{
 			name : '正焕',
@@ -95,7 +93,7 @@ let config = {
 		},
 		{
 			name : '东龙',
-			img : '//img1.imgtn.bdimg.com/it/u=1064578235,340201784&fm=26&gp=0.jpg'
+			img : require('./img/dong.jpg')
 		},
 	],
 	fuzzy : {
