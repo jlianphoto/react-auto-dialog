@@ -69,31 +69,31 @@ class App extends Component {
 let config = {
   speed: 2000,
   me: {
-    name : '德善',
-    img : require('./img/de.jpg')
+    name : 'myName',
+    img : require('./img/myName.jpg')
   },
   orthers:[
     {
-      name : '正峰',
-      img : '//img5.imgtn.bdimg.com/it/u=3451266450,2355062325&fm=26&gp=0.jpg'
+      name : 'mother',
+      img : require('./img/mother.jpg')
     },
     {
-      name : '正峰妈妈',
-      img : '//img0.imgtn.bdimg.com/it/u=217392933,3688331757&fm=26&gp=0.jpg'
+      name : 'father',
+      img : require('./img/father.jpg')
     },
   ],
   fuzzy : {
     answer : [
       {
         key : '1',
-        msg :  {'正峰' : '你输入1干什么'}
+        msg :  {'mother' : 'hi~'}
       },
       {
         key : 'a',
-        msg : {'正峰' : '你输入a干什么'}
+        msg : {'father' : 'ok~'}
       }
     ],
-    default : {'正峰' : '了解组件更多相关配'}
+    default : {'mother' : "doesn't match any keywords"}
   }
 }
 
@@ -130,7 +130,7 @@ question
 `{'name' : {
 	type : 'question',
 	msg : 'your question',
-	key : 'the key for match'
+	key : 'the key for matching'
 }}`
 
 
@@ -138,36 +138,29 @@ question
 
 ```js
 let dialog = [
-	{'tip' : 'NO.01 温暖的一句话'},
-	{'正焕' : '哥，那手术失败的几率都不到百分之三，我都查过了'},
-	{'正峰' : '小时候得心脏病的几率连百分之二都不到，所以哥哥很害怕那百分之三'},
-
-	{'tip' : 'NO.03  再见初恋'},
-	{'正焕' : '在这儿干什么'},
-	{'me' : '有事想问你'},
-	{'正焕' : '进我屋说吧，太冷了'},
-
+	{'tip' : 'this is a tip'},
+	{'mother' : 'how are you'},
+	{'me' : 'i am find , thank you'},
 	//image
-	{'东龙' : {
+	{'father' : {
 		type : 'img',
 		image : require('./img/img2.jpg')
 	}},
-	{'tip' : '......'},
 	//video
-	{'正焕' : {
+	{'me' : {
 		type : 'video',
 		image : './img/videCover.jpg',
 		source : '//v.qq.com/iframe/player.html?vid=m0357eb6ia2&tiny=0&auto=0'
 	}},
 	
 	//question
-	{'东龙' : {
+	{'father' : {
 		type:'question',
-		msg:'你觉得正八是不是傻',
-		key : '不'
+		msg:'are you ok ?',
+		key : 'yes'
 	}},
-	{'东龙' : '可怜的正八，只是感到了观众'},
-	{'东龙' : '我也觉得他很傻，可是啊，他就这样子，我也拿他没办法'},
+	{'me' : 'if this message includes yes , it will be sent'},
+	{'me' : "if this message doesn't includes yes , it will be sent"},
 ]
 ```
 
