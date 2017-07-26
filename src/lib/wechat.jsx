@@ -170,7 +170,17 @@ class Wechat extends Component {
     this.$view = document.querySelector('#hiddenView');
     
     //start
-    preload(this.props.config , this.props.dialog , _=>this.openTimer());
+    preload(this.props.config , this.props.dialog , _=>{
+
+      this.openTimer();
+      let imgs = [this.props.config.fuzzy.default];
+      this.props.config.fuzzy.answer.forEach(item=>{
+        imgs.push(item.msg);
+      });
+      preload(imgs);
+      
+    });
+
   }
 
   componentDidUpdate(){

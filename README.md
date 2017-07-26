@@ -33,7 +33,7 @@ Wechat JS-SDK
 ## Used
 
 ```bash
-npm react-auto-dialog -S
+npm install -S react-auto-dialog
 ```
 
 ```js

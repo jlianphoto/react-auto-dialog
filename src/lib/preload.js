@@ -2,14 +2,20 @@ function preload(config , dialog , callback){
   let sourceArr = [];
   let index = 0;
 
+  if (arguments.length === 3) {
+    sourceArr.push(config.me.img);
+    
+    if (config.orthers && config.orthers.length>0) {
+      config.orthers.forEach(item=>{
+        sourceArr.push(item.img);
+      })
+    }
 
-  sourceArr.push(config.me.img);
-  
-  if (config.orthers && config.orthers.length>0) {
-    config.orthers.forEach(item=>{
-      sourceArr.push(item.img);
-    })
+  }else{
+    dialog = config;
   }
+
+  
 
   dialog.forEach(item=>{
     let name = Object.keys(item)[0],
@@ -25,7 +31,7 @@ function preload(config , dialog , callback){
     img.onload = function(){
       index++;
       if (index === sourceArr.length) {
-        callback();
+        callback && callback();
       }
     }
   })
