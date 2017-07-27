@@ -36,6 +36,8 @@ class App extends Component {
 |key|description|defualt|type/options|
 |:---|---|---|---|
 | `speed`|对话速度 |2000|Number|
+| `preload`|是否使用图片预加载 |false|Boolean|
+| `process`|进度函数 ||Function|
 |`me`|定义自己（头像，人名）||Object|
 |`orthers`|定义其他人||Array|
 |`fuzzy`|自动播放结束时 ， 模糊匹配用户输入后的反馈.||Array|
@@ -46,6 +48,8 @@ class App extends Component {
 let config = {
   //对话速度
   speed: 2000,
+  preload : true,
+  process : percentage=>{console.log(percentage)}
   me: {
     name : '德善', ////昵称
     img : require('./img/de.jpg') //头像

@@ -9,6 +9,7 @@ class Wechat extends Component {
       this.index = 0;
 
       this.speed = this.props.config.speed || 2000;
+      this.isPreload = this.props.config.preload;
 
       this.state = {
         dialogs : [],
@@ -169,16 +170,22 @@ class Wechat extends Component {
   componentDidMount(){
     this.$view = document.querySelector('#hiddenView');
     
-    //start
-    preload(this.props.config , this.props.dialog , _=>{
-
+    if (!this.isPreload) {
       this.openTimer();
-      let imgs = [this.props.config.fuzzy.default];
-      this.props.config.fuzzy.answer.forEach(item=>{
-        imgs.push(item.msg);
-      });
-      preload(imgs);
-      
+      return
+    }
+
+    //start
+    preload(this.props.config , this.props.dialog , percentage=>{
+      this.props.config.process && this.props.config.process(percentage);
+      if (percentage===100) {
+        this.openTimer();
+        let imgs = [this.props.config.fuzzy.default];
+        this.props.config.fuzzy.answer.forEach(item=>{
+          imgs.push(item.msg);
+        });
+        preload(imgs);
+      }
     });
 
   }

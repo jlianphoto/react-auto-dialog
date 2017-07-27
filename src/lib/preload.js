@@ -30,9 +30,8 @@ function preload(config , dialog , callback){
     img.src = item;
     img.onload = function(){
       index++;
-      if (index === sourceArr.length) {
-        callback && callback();
-      }
+      let percentage = index/sourceArr.length*100;
+      callback && callback(percentage);
     }
   })
 

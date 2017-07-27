@@ -59,6 +59,8 @@ class App extends Component {
 |key|description|defualt|type/options|
 |:---|---|---|---|
 | `speed`|the dialog's speed |2000|Number|
+| `preload`|picture preload |false|Boolean|
+| `process`|when the preload is `true` , this function can tell you the loading progress ||Function|
 |`me`|the message of the host||Object|
 |`orthers`|orther people message||Array|
 |`fuzzy`|when the dialog has finished , match the customer's word and answer the question.||Array|
@@ -68,6 +70,8 @@ class App extends Component {
 ```js
 let config = {
   speed: 2000,
+  preload : true,
+  process : percentage=>{console.log(percentage)}
   me: {
     name : 'myName',
     img : require('./img/myName.jpg')

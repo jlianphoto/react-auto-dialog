@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Wechat from './lib/wechat';
+import './App.scss';
+
 
 let dialog = [
 	{'tip' : 'NO.01 温暖的一句话'},
@@ -62,91 +64,127 @@ let dialog = [
 
 
 
-let config = {
-	speed: 2000,
-	me: {
-		name : '德善',
-		img : require('./img/de.jpg')
-	},
-	orthers:[
-		{
-			name : '正峰',
-			img : require('./img/feng.jpg')
-		},
-		{
-			name : '正峰妈妈',
-			img : require('./img/z_mother.jpg')
-		},
-		{
-			name : '正焕',
-			img : require('./img/huan.jpg')
-		},
-		{
-			name : '东龙',
-			img : require('./img/dong.jpg')
-		},
-		{
-			name : '崔泽',
-			img : require('./img/ze.jpg')
-		},
-		{
-			name : '善宇',
-			img : require('./img/yu.jpg')
-		}
-	],
-	fuzzy : {
-		answer : [
-			{
-				key : '德',
-				msg :  {'me' : {
-					type : 'video',
-					image : 'http://shp.qpic.cn/qqvideo_ori/0/d03875nc1zl_496_280/0',
-					source : 'https://v.qq.com/iframe/player.html?vid=d03875nc1zl&tiny=0&auto=0'
-				}}
-			},
-			{
-				key : '焕',
-				msg :  {'正焕' : {
-					type : 'video',
-					image : require('./img/cover.jpg'),
-					source : '//v.qq.com/iframe/player.html?vid=m0357eb6ia2&tiny=0&auto=0'
-				}},
-			},
-			{
-				key : '宇',
-				msg : {'善宇' : {
-					type : 'video',
-					image : 'http://shp.qpic.cn/qqvideo_ori/0/c0188xk4c3z_496_280/0',
-					source : 'https://v.qq.com/iframe/player.html?vid=c0188xk4c3z&tiny=0&auto=0'
-				}}
-			},
-			{
-				key : '泽',
-				msg : {'崔泽':{
-					type : 'video',
-					image : 'http://puui.qpic.cn/qqvideo_ori/0/d05020davl1_496_280/0',
-					source : 'https://v.qq.com/iframe/player.html?vid=g0399i6y9re&tiny=0&auto=0'
-				}}
-			},
-			{
-				key : '龙',
-				msg : {'东龙':{
-					type : 'video',
-					image : 'http://puui.qpic.cn/qqvideo_ori/0/m0364cxj4xl_496_280/0',
-					source : 'https://v.qq.com/iframe/player.html?vid=m0364cxj4xl&tiny=0&auto=0'
-				}}
-			}
-		],
-		default : {'正焕' : '了解组件更多相关配：<a href="https://github.com/jlianphoto/react-auto-dialog">https://github.com/jlianphoto/react-auto-dialog<a/>'}
-	}
-}
+
 
 class App extends Component {
-  render() {
-    return (
-      <Wechat dialog={dialog} config={config}></Wechat>
-    );
-  }
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			process : 0,
+			isShow : 'block'
+		}
+
+		this.config = {
+			speed: 2000,
+			preload: true,
+			process : this.process,
+			me: {
+				name : '德善',
+				img : require('./img/de.jpg')
+			},
+			orthers:[
+				{
+					name : '正峰',
+					img : require('./img/feng.jpg')
+				},
+				{
+					name : '正峰妈妈',
+					img : require('./img/z_mother.jpg')
+				},
+				{
+					name : '正焕',
+					img : require('./img/huan.jpg')
+				},
+				{
+					name : '东龙',
+					img : require('./img/dong.jpg')
+				},
+				{
+					name : '崔泽',
+					img : require('./img/ze.jpg')
+				},
+				{
+					name : '善宇',
+					img : require('./img/yu.jpg')
+				}
+			],
+			fuzzy : {
+				answer : [
+					{
+						key : '德',
+						msg :  {'me' : {
+							type : 'video',
+							image : 'http://shp.qpic.cn/qqvideo_ori/0/d03875nc1zl_496_280/0',
+							source : 'https://v.qq.com/iframe/player.html?vid=d03875nc1zl&tiny=0&auto=0'
+						}}
+					},
+					{
+						key : '焕',
+						msg :  {'正焕' : {
+							type : 'video',
+							image : require('./img/cover.jpg'),
+							source : '//v.qq.com/iframe/player.html?vid=m0357eb6ia2&tiny=0&auto=0'
+						}},
+					},
+					{
+						key : '宇',
+						msg : {'善宇' : {
+							type : 'video',
+							image : 'http://shp.qpic.cn/qqvideo_ori/0/c0188xk4c3z_496_280/0',
+							source : 'https://v.qq.com/iframe/player.html?vid=c0188xk4c3z&tiny=0&auto=0'
+						}}
+					},
+					{
+						key : '泽',
+						msg : {'崔泽':{
+							type : 'video',
+							image : 'http://puui.qpic.cn/qqvideo_ori/0/d05020davl1_496_280/0',
+							source : 'https://v.qq.com/iframe/player.html?vid=g0399i6y9re&tiny=0&auto=0'
+						}}
+					},
+					{
+						key : '龙',
+						msg : {'东龙':{
+							type : 'video',
+							image : 'http://puui.qpic.cn/qqvideo_ori/0/m0364cxj4xl_496_280/0',
+							source : 'https://v.qq.com/iframe/player.html?vid=m0364cxj4xl&tiny=0&auto=0'
+						}}
+					}
+				],
+				default : {'正焕' : '了解组件更多相关配：<a href="https://github.com/jlianphoto/react-auto-dialog">https://github.com/jlianphoto/react-auto-dialog<a/>'}
+			}
+		}
+	}
+
+	
+	process = (percentage)=>{
+		this.setState({
+			process : percentage
+		})
+		if (percentage===100) {
+			this.setState({
+				isShow : 'none'
+			})
+		}
+	}
+
+
+
+	render() {
+		return (
+		    <div>	
+		    	<div className='preload-wrapper' style={{display:this.state.isShow}}>
+		    		<section>
+		    			<img src={require('./img/preload.jpg')} alt='loading'/>
+		    			<p>{this.state.process}%</p>
+		    		</section>
+		    		
+		    	</div>
+		  		<Wechat dialog={dialog} config={this.config}></Wechat>
+		    </div>
+		);
+	}
 }
 
 export default App;
